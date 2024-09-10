@@ -1,24 +1,30 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <time.h>
 #include <string.h>
 
 void subir(int i, int array[]);
 void construir(int *array, int n);
 void descer(int i, int n, int *array);
-// void remover();
 void print(int *array, int n);
 void inserir(int n, int novo, int *array);
+void remover(int *array);
 int n = 6;
 
 int main()
 {
   int *arrayPointer = (int *)calloc(15, sizeof(int));
+
   int array[] = {17, 8, 21, 6, 2, 9};
 
   memcpy(arrayPointer, array, sizeof(array));
 
   construir(arrayPointer, n);
+
+  print(arrayPointer, n);
+
+  remover(arrayPointer);
+
+  printf("N:: %d", n);
 
   print(arrayPointer, n);
 
@@ -86,6 +92,21 @@ void print(int *array, int n)
 void inserir(int n, int novo, int *array)
 {
   array[n] = novo;
-  subir(n, array);
   n = n + 1;
+  subir(n, array);
+}
+
+void remover(int *array)
+{
+  if (n > 0)
+  {
+    array[0] = array[n - 1];
+    array[n - 1] = 0;
+    n = n - 1;
+    descer(0, n, array);
+  }
+  else
+  {
+    puts("Underflow");
+  }
 }
