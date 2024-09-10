@@ -1,27 +1,26 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <string.h>
+
 void subir(int i, int array[]);
-void construir(int *array, int *n);
-void descer(int i, int *n, int *array);
+void construir(int *array, int n);
+void descer(int i, int n, int *array);
 // void remover();
-void print(int *array, int *n);
+void print(int *array, int n);
+void inserir(int n, int novo, int *array);
+int n = 6;
 
 int main()
 {
-  int n = 6;
-  // int *array = (int *)calloc(n, sizeof(int));
-
-  // for (int i = 0; i < n; i++)
-  //{
-  //   array[i] = rand() % 1000;
-  // }
-
+  int *arrayPointer = (int *)calloc(15, sizeof(int));
   int array[] = {17, 8, 21, 6, 2, 9};
-  construir(array, &n);
 
-  printf("Heap:");
-  print(array, &n);
+  memcpy(arrayPointer, array, sizeof(array));
+
+  construir(arrayPointer, n);
+
+  print(arrayPointer, n);
 
   return 0;
 }
@@ -33,10 +32,10 @@ void troca(int i, int j, int *array)
   array[j] = aux;
 }
 
-void subir(int i, int array[])
+void subir(int i, int *array)
 {
-  int j = (i / 2) + 1;
-  if (j >= 1)
+  int j = (i / 2) - 1;
+  if (j >= 0)
   {
     if (array[i] > array[j])
     {
@@ -46,12 +45,12 @@ void subir(int i, int array[])
   }
 }
 
-void descer(int i, int *n, int *array)
+void descer(int i, int n, int *array)
 {
   int j = (2 * i) + 1;
-  if (j <= *n)
+  if (j <= n)
   {
-    if (j + 1 < *n)
+    if (j + 1 < n)
     {
       if (array[j + 1] > array[j])
       {
@@ -66,34 +65,27 @@ void descer(int i, int *n, int *array)
   }
 }
 
-void construir(int array[], int *n)
+void construir(int array[], int n)
 {
-  for (int i = (*n / 2) - 1; i >= 0; i--)
+  for (int i = (n / 2) - 1; i >= 0; i--)
   {
     descer(i, n, array);
   }
 }
 
-// void remover(int *n, int *array)
-// {
-//   if (*n > 0)
-//   {
-//     array[0] = array[*n];
-//     *n = *n - 1;
-//     descer(0, n, array);
-//   }
-//   else
-//   {
-//     puts("Underflow");
-//   }
-// }
-
-void print(int *array, int *n)
+void print(int *array, int n)
 {
   puts("");
-  for (int i = 0; i < *n; i++)
+  for (int i = 0; i < n; i++)
   {
     printf("%d ", array[i]);
   }
   puts("");
+}
+
+void inserir(int n, int novo, int *array)
+{
+  array[n] = novo;
+  subir(n, array);
+  n = n + 1;
 }
