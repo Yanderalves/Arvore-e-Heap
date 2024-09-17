@@ -1,6 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdlib.h>
+#include <time.h>
+
+const long __1K = 1000;
+const long __10K = 10000;
+const long __1M = 1000000000;
 
 void subir(int i, int array[]);
 void construir(int *array, int n);
@@ -9,6 +15,7 @@ void print(int *array, int n);
 void inserir(int novo, int *array);
 void remover(int *array);
 void heapSort(int *array, int n);
+int gerarArrays();
 int n = 6;
 
 int main()
@@ -18,10 +25,6 @@ int main()
   int array[] = {17, 8, 21, 6, 2, 9};
 
   memcpy(arrayPointer, array, sizeof(array));
-
-  heapSort(arrayPointer, n);
-
-  print(arrayPointer, n);
 
   return 0;
 }
@@ -117,4 +120,40 @@ void heapSort(int *array, int n)
     troca(0, m, array);
     descer(0, --m, array);
   }
+}
+
+int gerarArrays()
+{
+  int _1K = (int *)calloc(sizeof(int), 1000);
+  int _10K = (int *)calloc(sizeof(int), 10000);
+  int _1M = (int *)calloc(sizeof(int), 1000000000);
+
+  FILE *file_1K, *file_10K, *file_1M;
+
+  file_1K = fopen("file_1K.txt", "w");
+  file_10K = fopen("file_10K.txt", "w");
+  file_1M = fopen("file_1M.txt", "w");
+
+  if (file_1K == NULL || file_10K == NULL || file_1M == NULL)
+  {
+    printf("Erro ao abrir o arquivo.\n");
+    return 1;
+  }
+
+  for (int i = 0; i < __1K; i++)
+  {
+    int numeroAleatorio = rand() % __1K;
+    fprintf(file_1K, "%d ", numeroAleatorio);
+  }
+  for (int i = 0; i < __10K; i++)
+  {
+    int numeroAleatorio = rand() % __10K;
+    fprintf(file_1K, "%d ", numeroAleatorio);
+  }
+  for (int i = 0; i < __1M; i++)
+  {
+    int numeroAleatorio = rand() % __1M;
+    fprintf(file_1K, "%d ", numeroAleatorio);
+  }
+  return 0;
 }
