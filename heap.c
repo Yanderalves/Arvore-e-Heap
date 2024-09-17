@@ -8,7 +8,7 @@ void descer(int i, int n, int *array);
 void print(int *array, int n);
 void inserir(int novo, int *array);
 void remover(int *array);
-void heapSort(int n);
+void heapSort(int *array, int n);
 int n = 6;
 
 int main()
@@ -19,7 +19,7 @@ int main()
 
   memcpy(arrayPointer, array, sizeof(array));
 
-  heapSort(n);
+  heapSort(arrayPointer, n);
 
   print(arrayPointer, n);
 
@@ -106,14 +106,15 @@ void remover(int *array)
   }
 }
 
-void heapSort(int n)
+void heapSort(int *array, int n)
 {
-  int array[] = {17, 8, 21, 6, 2, 9};
-
   construir(array, n);
-  for (int i = n - 1; i > 0; i--)
+
+  int m = n - 1;
+
+  while (m > 0)
   {
-    troca(0, i, array);
-    descer(0, i, array);
+    troca(0, m, array);
+    descer(0, --m, array);
   }
 }
