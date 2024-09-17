@@ -6,8 +6,9 @@ void subir(int i, int array[]);
 void construir(int *array, int n);
 void descer(int i, int n, int *array);
 void print(int *array, int n);
-void inserir(int n, int novo, int *array);
+void inserir(int novo, int *array);
 void remover(int *array);
+void heapSort(int n);
 int n = 6;
 
 int main()
@@ -18,13 +19,7 @@ int main()
 
   memcpy(arrayPointer, array, sizeof(array));
 
-  construir(arrayPointer, n);
-
-  print(arrayPointer, n);
-
-  remover(arrayPointer);
-
-  printf("N:: %d", n);
+  heapSort(n);
 
   print(arrayPointer, n);
 
@@ -56,7 +51,7 @@ void descer(int i, int n, int *array)
   int j = (2 * i) + 1;
   if (j <= n)
   {
-    if (j + 1 < n)
+    if (j < n)
     {
       if (array[j + 1] > array[j])
       {
@@ -66,8 +61,8 @@ void descer(int i, int n, int *array)
     if (array[i] < array[j])
     {
       troca(i, j, array);
+      descer(j, n, array);
     }
-    descer(j, n, array);
   }
 }
 
@@ -89,11 +84,11 @@ void print(int *array, int n)
   puts("");
 }
 
-void inserir(int n, int novo, int *array)
+void inserir(int novo, int *array)
 {
   array[n] = novo;
-  n = n + 1;
   subir(n, array);
+  n = n + 1;
 }
 
 void remover(int *array)
@@ -101,12 +96,24 @@ void remover(int *array)
   if (n > 0)
   {
     array[0] = array[n - 1];
-    array[n - 1] = 0;
     n = n - 1;
+    array[n] = 0;
     descer(0, n, array);
   }
   else
   {
     puts("Underflow");
+  }
+}
+
+void heapSort(int n)
+{
+  int array[] = {17, 8, 21, 6, 2, 9};
+
+  construir(array, n);
+  for (int i = n - 1; i > 0; i--)
+  {
+    troca(0, i, array);
+    descer(0, i, array);
   }
 }
