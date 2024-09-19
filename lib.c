@@ -4,7 +4,10 @@
 
 long size_1K = 1000;
 long size_100K = 100000;
+long size_1M = 1000000;
+long size_5M = 5000000;
 long size_10M = 10000000;
+long size_100M = 100000000;
 long size_1BI = 1000000000;
 long n;
 
@@ -128,9 +131,21 @@ long buscar_tamanho_array(char *nome_arquivo)
   {
     tam_array = size_100K;
   }
+  else if (strcmp(nome_arquivo, "1M.txt") == 0)
+  {
+    tam_array = size_1M;
+  }
+  else if (strcmp(nome_arquivo, "5M.txt") == 0)
+  {
+    tam_array = size_5M;
+  }
   else if (strcmp(nome_arquivo, "10M.txt") == 0)
   {
     tam_array = size_10M;
+  }
+  else if (strcmp(nome_arquivo, "100M.txt") == 0)
+  {
+    tam_array = size_100M;
   }
   else if (strcmp(nome_arquivo, "1BI.txt") == 0)
   {
