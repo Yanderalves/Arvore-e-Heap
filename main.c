@@ -8,10 +8,16 @@ int main()
 
   // teste_heap_sort_1K();
   // teste_heap_sort_100K();
+  // teste_heap_sort_1M();
   // teste_heap_sort_5M();
-  // teste_insertion_sort_10M();
-  teste_insertion_sort_1M();
+  // teste_heap_sort_10M();
   // teste_heap_sort_100M();
+
+  // teste_insertion_sort_1K();
+  // teste_insertion_sort_100K();
+  // teste_insertion_sort_1M();
+  // teste_insertion_sort_5M();
+  // teste_insertion_sort_10M();
   return 0;
 }
 
