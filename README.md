@@ -14,19 +14,19 @@
         - 0.00 milissegundos
     - [x]  Heap sort - 100K
         - 0.00 milissegundos
-    - [ ]  Heap sort - 1M
+    - [x]  Heap sort - 1M
         - 0.00 milissegundos
     - [x]  Heap sort - 10M
         - 3.000 milissegundos
     - [x]  Heap sort - 100M
         - 40.000 milissegundos
-    - [x]  Heap sort - 1B
+    - [x]  Heap sort - 1BI
         - Sem memória suficiente pra alocar
     - [x]  Insertion sort - 1K
         - 0.000 segundos
     - [x]  Insertion sort - 100K
         - 0.000 segundos
-    - [ ]  Insertion sort - 1M
+    - [x]  Insertion sort - 1M
         - 360.000 milssegundos
     - [ ]  Insertion sort - 5M
         - Ainda falta testar denovo
@@ -34,7 +34,6 @@
         - Rodou por horas e não executou
     - [x]  Insertion sort - 1BI
         - Sem memória o suficiente pra alocar
-- [ ]  Relatório
-    
-    https://docs.google.com/spreadsheets/d/1e6nKAFhvsT4Riw2dkMQNYU8L-owU7VoeSJfodJgRs-A/edit?gid=1654711040#gid=1654711040
+- [x]  Relatório
+    * https://docs.google.com/document/d/1u8uRsM9ONEogGW0Qc_iCaKbY-YM-MfgPSvf7qiiHUnU/edit#heading=h.u084as8stz7i
     
