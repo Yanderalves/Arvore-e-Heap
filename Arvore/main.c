@@ -21,7 +21,7 @@ int main()
   node2->esq = node4;
   node4->dir = node5;
 
-  pos_ordem(raiz);
+  calcular_altura(raiz);
 
   printf("Altura da arvore: %d\n", raiz->altura);
 

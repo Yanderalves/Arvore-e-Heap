@@ -84,11 +84,11 @@ void calcular_altura(No *no)
 {
   if (no->esq != NULL)
   {
-    pos_ordem(no->esq);
+    calcular_altura(no->esq);
   }
   if (no->dir != NULL)
   {
-    pos_ordem(no->dir);
+    calcular_altura(no->dir);
   }
   visitar(no);
 }
