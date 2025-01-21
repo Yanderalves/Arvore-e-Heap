@@ -104,7 +104,7 @@ void insert_node(No **node, int value)
 No *search(No **node, int value)
 {
   if (*node == NULL)
-    puts("Tree is Empty");
+    return NULL;
   else
   {
     if ((*node)->key == value)

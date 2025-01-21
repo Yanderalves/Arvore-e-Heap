@@ -10,7 +10,12 @@ int main()
   insert_node(&root, 18);
   insert_node(&root, 13);
 
-  No *node_search = search(&root, 15);
+  No *node_search = search(&root, 78);
+
+  if (node_search != NULL)
+    puts("Element found");
+  else
+    puts("Element not found");
 
   return 0;
 }
