@@ -90,7 +90,7 @@ void insert_node(No **node, int value)
   else
   {
     if ((*node)->key == value)
-      puts("Element already exists in the tree. ");
+      return;
     else if (value < (*node)->key)
     {
       insert_node(&(*node)->left, value);
@@ -129,4 +129,56 @@ void fill_vector(int *vector, int n)
   {
     vector[i] = rand() % 10000;
   }
+}
+void remove_node(int value, No **node)
+{
+  if (*node == NULL)
+    puts("Tree is Empty");
+  else
+  {
+    if ((*node)->key > value)
+      remove_node(value, &(*node)->left);
+    else if ((*node)->key < value)
+      remove_node(value, &(*node)->rigth);
+    else
+    {
+      No *aux = *node;
+      if ((*node)->left == NULL && (*node)->rigth == NULL)
+      {
+        free(aux);
+        *node = NULL;
+      }
+      else if ((*node)->left == NULL)
+      {
+        (*node) = (*node)->rigth;
+        free(aux);
+      }
+      else if ((*node)->rigth == NULL)
+      {
+        (*node) = (*node)->left;
+        free(aux);
+      }
+      else
+      {
+        aux = (*node)->rigth;
+        while (aux->left != NULL)
+        {
+          aux = aux->left;
+        }
+        (*node)->key = aux->key;
+        remove_node(aux->key, &(*node)->rigth);
+      }
+    }
+  }
+}
+
+void count_nodes(No **node, int *nodes)
+{
+  if ((*node)->left != NULL)
+    count_nodes(&(*node)->left, nodes);
+
+  if ((*node)->rigth != NULL)
+    count_nodes(&(*node)->rigth, nodes);
+
+  *nodes = *nodes + 1;
 }
