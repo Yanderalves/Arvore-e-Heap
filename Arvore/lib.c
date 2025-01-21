@@ -100,3 +100,22 @@ void insert_node(No **node, int value)
     }
   }
 }
+
+No *search(No **node, int value)
+{
+  if (*node == NULL)
+    puts("Tree is Empty");
+  else
+  {
+    if ((*node)->key == value)
+      return *node;
+    else if (value < (*node)->key)
+    {
+      return search(&(*node)->left, value);
+    }
+    else
+    {
+      return search(&(*node)->rigth, value);
+    }
+  }
+}
