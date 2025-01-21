@@ -1,10 +1,19 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct _no No;
+typedef struct No
+{
+    int key;
+    struct No *left;
+    struct No *rigth;
+} No;
 
-void pos_ordem(No *no);
-void pre_ordem(No *no);
-void in_ordem(No *no);
-void visitar(No *no);
-void calcular_altura(No *no);
+void post_order(No *no);
+void pre_order(No *no);
+void in_order(No *no);
+
+int heigth(No *no);
+int max_number(int a, int b);
+
+void insert_node(No **node, int value);
+No *create_node(int value);

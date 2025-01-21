@@ -2,93 +2,101 @@
 
 struct _no
 {
-  int chave;
-  int altura;
-  No *esq;
-  No *dir;
+  int key;
+  No *left;
+  No *rigth;
 };
 
-void pre_ordem(No *no)
+void pre_order(No *no)
 {
-  printf("%d\n", no->chave);
-  if (no->esq != NULL)
+  printf("%d\n", no->key);
+  if (no->left != NULL)
   {
-    pre_ordem(no->esq);
+    pre_order(no->left);
   }
 
-  if (no->dir != NULL)
+  if (no->rigth != NULL)
   {
-    pre_ordem(no->dir);
+    pre_order(no->rigth);
   }
 }
 
-void pos_ordem(No *no)
+void post_order(No *no)
 {
-  if (no->esq != NULL)
+  if (no->left != NULL)
   {
-    pos_ordem(no->esq);
+    post_order(no->left);
   }
-  if (no->dir != NULL)
+  if (no->rigth != NULL)
   {
-    pos_ordem(no->dir);
+    post_order(no->rigth);
   }
-  printf("%d\n", no->chave);
+  printf("%d\n", no->key);
 }
 
-void in_ordem(No *no)
+void in_order(No *no)
 {
-  if (no->esq != NULL)
+  if (no->left != NULL)
   {
-    in_ordem(no->esq);
+    in_order(no->left);
   }
-  printf("%d\n", no->chave);
-  if (no->dir != NULL)
+  printf("%d\n", no->key);
+  if (no->rigth != NULL)
   {
-    in_ordem(no->dir);
+    in_order(no->rigth);
   }
 }
 
-void visitar(No *no)
+int heigth(No *no)
 {
-  int ah1 = 0;
-  int ah2 = 0;
-  if (no->esq != NULL)
+  int hl = 0, hr = 0;
+  if (no == NULL)
+    return -1;
+  else if (no->left == NULL && no->rigth == NULL)
+    return 0;
+  else
   {
-    ah1 = no->esq->altura;
+    if (no->left != NULL)
+      hl = heigth(no->left);
+    if (no->rigth != NULL)
+      hr = heigth(no->rigth);
+  }
+
+  return 1 + max_number(hl, hr);
+}
+
+int max_number(int a, int b)
+{
+  return a > b ? a : b;
+}
+
+No *create_node(int value)
+{
+  No *node = calloc(1, sizeof(No));
+  node->key = value;
+  node->left = NULL;
+  node->rigth = NULL;
+
+  return node;
+}
+
+void insert_node(No **node, int value)
+{
+  if (*node == NULL)
+  {
+    *node = create_node(value);
   }
   else
   {
-    ah1 = 0;
+    if ((*node)->key == value)
+      puts("Element already exists in the tree. ");
+    else if (value < (*node)->key)
+    {
+      insert_node(&(*node)->left, value);
+    }
+    else
+    {
+      insert_node(&(*node)->rigth, value);
+    }
   }
-
-  if (no->dir != NULL)
-  {
-    ah2 = no->dir->altura;
-  }
-  else
-  {
-    ah2 = 0;
-  }
-
-  if (ah1 > ah2)
-  {
-    no->altura = ah1 + 1;
-  }
-  else
-  {
-    no->altura = ah2 + 1;
-  }
-}
-
-void calcular_altura(No *no)
-{
-  if (no->esq != NULL)
-  {
-    calcular_altura(no->esq);
-  }
-  if (no->dir != NULL)
-  {
-    calcular_altura(no->dir);
-  }
-  visitar(no);
 }
