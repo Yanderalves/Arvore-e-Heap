@@ -1,4 +1,5 @@
 #include "lib.h"
+#include <time.h>
 
 struct _no
 {
@@ -9,7 +10,7 @@ struct _no
 
 void pre_order(No *no)
 {
-  printf("%d\n", no->key);
+  printf("%d -> ", no->key);
   if (no->left != NULL)
   {
     pre_order(no->left);
@@ -31,7 +32,7 @@ void post_order(No *no)
   {
     post_order(no->rigth);
   }
-  printf("%d\n", no->key);
+  printf("%d -> ", no->key);
 }
 
 void in_order(No *no)
@@ -40,7 +41,7 @@ void in_order(No *no)
   {
     in_order(no->left);
   }
-  printf("%d\n", no->key);
+  printf("%d -> ", no->key);
   if (no->rigth != NULL)
   {
     in_order(no->rigth);
@@ -117,5 +118,15 @@ No *search(No **node, int value)
     {
       return search(&(*node)->rigth, value);
     }
+  }
+}
+
+void fill_vector(int *vector, int n)
+{
+  srand(time(NULL));
+
+  for (int i = 0; i < n; i++)
+  {
+    vector[i] = rand() % 10000;
   }
 }

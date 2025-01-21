@@ -5,17 +5,33 @@
 int main()
 {
   No *root = NULL;
+  int n = 10;
 
-  insert_node(&root, 15);
-  insert_node(&root, 18);
-  insert_node(&root, 13);
+  int *vector = calloc(n, sizeof(int));
 
-  No *node_search = search(&root, 78);
+  fill_vector(vector, n);
 
-  if (node_search != NULL)
-    puts("Element found");
-  else
-    puts("Element not found");
+  printf("Insert %d nodes:", n);
+
+  for (int i = 0; i < n; i++)
+  {
+    insert_node(&root, vector[i]);
+  }
+
+  puts("=================");
+  puts("Print Tree In Pre Order");
+  pre_order(root);
+  puts("\n");
+
+  puts("=================");
+  puts("Print Tree In Order");
+  in_order(root);
+  puts("\n");
+
+  puts("=================");
+  puts("Print Tree In post Order");
+  post_order(root);
+  puts("\n");
 
   return 0;
 }

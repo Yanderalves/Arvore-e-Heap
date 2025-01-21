@@ -15,6 +15,7 @@ void in_order(No *no);
 int heigth(No *no);
 int max_number(int a, int b);
 No *create_node(int value);
+void fill_vector(int *vector, int n);
 
 void insert_node(No **node, int value);
 No *search(No **node, int value);
